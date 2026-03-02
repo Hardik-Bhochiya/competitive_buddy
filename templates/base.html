@@ -1,33 +1,39 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>{% block title %}Competitive Buddy{% endblock %}</title>
-    <link rel="stylesheet" href="/static/css/base.css">
-    {% block css %}{% endblock %}
+<meta charset="UTF-8">
+<title>Competitive Buddy</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" href="{% static 'css/base.css' %}">
+{% block extra_css %}{% endblock %}
+
 </head>
+
 <body>
 
 <nav class="navbar">
-    <div class="logo">Competitive Buddy</div>
+    <div class="nav-brand">Competitive Buddy</div>
+
     <div class="nav-links">
         <a href="/">Home</a>
-        <a href="/profile">Profile</a>
-        <a href="/stats">Stats</a>
-        <a href="/contest">Contests</a>
-        <a href="/mentor">Mentor</a>
-        <a href="/login">Login</a>
+        <a href="/contests/">Contest</a>
+        <a href="/mentor/">Mentor</a>
+
+        {% if user.is_authenticated %}
+            <a href="/stats/">Stats</a>
+            <a href="/profile/">Profile</a>
+        {% else %}
+            <a href="/login/">Login</a>
+            <a href="/signup/">Signup</a>
+        {% endif %}
     </div>
 </nav>
 
-<main class="main-container">
+<main class="page">
     {% block content %}{% endblock %}
 </main>
 
-<footer class="footer">
-    © 2026 Competitive Buddy. All rights reserved.
-</footer>
-
-{% block js %}{% endblock %}
 </body>
 </html>
