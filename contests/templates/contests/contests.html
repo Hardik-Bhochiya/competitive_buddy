@@ -2,6 +2,54 @@
 
 {% block content %}
 
-<h2>Page coming soon</h2>
+<h1>Contest Tracker</h1>
+
+<h2>Running Contests</h2>
+
+{% for contest in running %}
+
+<div class="contest-card">
+<h3>{{ contest.name }}</h3>
+<p><b>Platform:</b> {{ contest.platform }}</p>
+<p><b>Start Time:</b> {{ contest.start }}</p>
+<p><b>Duration:</b> {{ contest.duration }}</p>
+<a href="{{ contest.url }}" target="_blank">Open Contest</a>
+</div>
+
+{% empty %}
+
+<p>No running contests right now.</p>
+
+{% endfor %}
+
+
+<h2>Upcoming Contests</h2>
+
+{% for contest in upcoming %}
+
+<div class="contest-card">
+<h3>{{ contest.name }}</h3>
+<p><b>Platform:</b> {{ contest.platform }}</p>
+<p><b>Start Time:</b> {{ contest.start }}</p>
+<p><b>Duration:</b> {{ contest.duration }}</p>
+<a href="{{ contest.url }}" target="_blank">Open Contest</a>
+</div>
+
+{% endfor %}
+
+
+<h2>Past Contests</h2>
+
+{% for contest in past %}
+
+<div class="contest-card">
+<h3>{{ contest.name }}</h3>
+<p><b>Platform:</b> {{ contest.platform }}</p>
+<p><b>Start Time:</b> {{ contest.start }}</p>
+<p><b>Duration:</b> {{ contest.duration }}</p>
+<a href="{{ contest.url }}" target="_blank">View Contest</a>
+</div>
+
+{% endfor %}
 
 {% endblock %}

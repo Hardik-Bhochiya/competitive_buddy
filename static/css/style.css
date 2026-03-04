@@ -142,3 +142,22 @@ margin:6px 0;
     margin-top:10px;
     overflow-x:auto;
 }
+
+.contest-container{
+display:flex;
+flex-direction:column;
+gap:15px;
+margin-top:20px;
+}
+
+.contest-card{
+background:#161b22;
+padding:15px;
+border-radius:10px;
+border:1px solid #30363d;
+}
+
+.contest-card a{
+color:#2ea043;
+text-decoration:none;
+}

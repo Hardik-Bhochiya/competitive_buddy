@@ -121,6 +121,8 @@ def stats(request):
 
 # ---------------- CODECHEF ----------------
 
+    import re
+
     if cc_handle:
 
         try:
@@ -149,12 +151,23 @@ def stats(request):
                         global_rank = ranks[0].text.strip()
                         country_rank = ranks[1].text.strip()
 
+                # Extract solved problems
+                solved = "N/A"
+
+                text = soup.get_text()
+
+                match = re.search(r"Total Problems Solved:\s*(\d+)", text)
+
+                if match:
+                    solved = match.group(1)
+
                 cc_data = {
                     "handle": cc_handle,
                     "rating": rating.text.strip() if rating else "N/A",
                     "stars": stars.text.strip() if stars else "N/A",
                     "global_rank": global_rank,
                     "country_rank": country_rank,
+                    "solved": solved
                 }
 
         except Exception as e:
