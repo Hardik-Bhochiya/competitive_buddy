@@ -74,8 +74,16 @@ def profile(request):
         profile.leetcode = request.POST.get("leetcode")
         profile.codechef = request.POST.get("codechef")
 
+        # IMAGE UPLOAD
+        if request.FILES.get("profile_image"):
+            profile.profile_image = request.FILES.get("profile_image")
+
         profile.save()
 
         return redirect("/accounts/profile/")
 
-    return render(request, "accounts/profile.html")
+    return render(
+        request,
+        "accounts/profile.html",
+        {"profile": profile}
+    )

@@ -11,7 +11,7 @@
 <div class="contest-card">
 <h3>{{ contest.name }}</h3>
 <p><b>Platform:</b> {{ contest.platform }}</p>
-<p><b>Start Time:</b> {{ contest.start }}</p>
+<p><b>Start Time:</b> {{ contest.start|date:"M d, Y • h:i A" }}</p>
 <p><b>Duration:</b> {{ contest.duration }}</p>
 <a href="{{ contest.url }}" target="_blank">Open Contest</a>
 </div>
@@ -30,7 +30,7 @@
 <div class="contest-card">
 <h3>{{ contest.name }}</h3>
 <p><b>Platform:</b> {{ contest.platform }}</p>
-<p><b>Start Time:</b> {{ contest.start }}</p>
+<p><b>Start Time:</b> {{ contest.start|date:"M d, Y • h:i A" }}</p>
 <p><b>Duration:</b> {{ contest.duration }}</p>
 <a href="{{ contest.url }}" target="_blank">Open Contest</a>
 </div>
@@ -45,7 +45,7 @@
 <div class="contest-card">
 <h3>{{ contest.name }}</h3>
 <p><b>Platform:</b> {{ contest.platform }}</p>
-<p><b>Start Time:</b> {{ contest.start }}</p>
+<p><b>Start Time:</b> {{ contest.start|date:"M d, Y • h:i A" }}</p>
 <p><b>Duration:</b> {{ contest.duration }}</p>
 <a href="{{ contest.url }}" target="_blank">View Contest</a>
 </div>

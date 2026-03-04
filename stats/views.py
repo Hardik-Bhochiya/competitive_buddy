@@ -75,21 +75,21 @@ def stats(request):
         query = {
             "query": """
             query getUserProfile($username: String!) {
-              matchedUser(username: $username) {
+            matchedUser(username: $username) {
                 submitStats {
-                  acSubmissionNum {
+                acSubmissionNum {
                     difficulty
                     count
-                  }
+                }
                 }
                 profile {
-                  ranking
+                ranking
                 }
                 submissionCalendar
-              }
-              userContestRanking(username: $username) {
+            }
+            userContestRanking(username: $username) {
                 rating
-              }
+            }
             }
             """,
             "variables": {"username": lc_handle}

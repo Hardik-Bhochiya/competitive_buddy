@@ -4,8 +4,7 @@
 
 <h1>Profile</h1>
 
-<form method="POST" id="profileForm">
-
+<form method="POST" enctype="multipart/form-data" id="profileForm">
 {% csrf_token %}
 
 <div class="profile-container">
@@ -14,7 +13,9 @@
 
 <div class="profile-left">
 
-<img src="{{ user.profile.image.url }}" class="profile-img">
+<img src="{{ user.profile.profile_image.url }}" class="profile-img">
+
+<input type="file" name="profile_image" class="edit">
 
 <h3>{{ user.username }}</h3>
 
@@ -30,6 +31,12 @@
 <input class="edit" name="country" value="{{ user.profile.country }}">
 </p>
 
+<!-- LOGOUT BUTTON -->
+
+<a href="/accounts/logout/" class="logout-btn view">
+Logout
+</a>
+
 </div>
 
 
@@ -40,22 +47,23 @@
 <h3>Competitive Handles</h3>
 
 <p>
-Codeforces
+Codeforces:
 <span class="view">{{ user.profile.codeforces }}</span>
 <input class="edit" name="codeforces" value="{{ user.profile.codeforces }}">
 </p>
 
 <p>
-LeetCode
+LeetCode:
 <span class="view">{{ user.profile.leetcode }}</span>
 <input class="edit" name="leetcode" value="{{ user.profile.leetcode }}">
 </p>
 
 <p>
-CodeChef
+CodeChef:
 <span class="view">{{ user.profile.codechef }}</span>
 <input class="edit" name="codechef" value="{{ user.profile.codechef }}">
 </p>
+
 
 <h3>Bio</h3>
 
@@ -65,13 +73,19 @@ CodeChef
 
 <br><br>
 
-<button type="button" id="editBtn" class="btn-green" onclick="enableEdit()">Edit Profile</button>
+<button type="button" id="editBtn" class="btn-green" onclick="enableEdit()">
+Edit Profile
+</button>
 
 <div id="saveSection" style="display:none">
 
-<button type="submit" class="btn-green">Save</button>
+<button type="submit" class="btn-green">
+Save
+</button>
 
-<button type="button" onclick="cancelEdit()">Cancel</button>
+<button type="button" onclick="cancelEdit()">
+Cancel
+</button>
 
 </div>
 
@@ -81,24 +95,26 @@ CodeChef
 
 </form>
 
+
 <script>
 
 function enableEdit(){
 
-document.querySelectorAll(".view").forEach(el => el.style.display="none")
+document.querySelectorAll(".view").forEach(el=>{
+el.style.display="none"
+})
 
-document.querySelectorAll(".edit").forEach(el => el.style.display="inline-block")
+document.querySelectorAll(".edit").forEach(el=>{
+el.style.display="block"
+})
 
 document.getElementById("editBtn").style.display="none"
-
 document.getElementById("saveSection").style.display="block"
 
 }
 
 function cancelEdit(){
-
 location.reload()
-
 }
 
 </script>

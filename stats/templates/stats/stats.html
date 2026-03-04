@@ -6,7 +6,7 @@
 
 <div class="stats-container">
 
-<!-- Codeforces -->
+<!-- ================= CODEFORCES ================= -->
 
 <div class="card">
 
@@ -14,16 +14,45 @@
 
 {% if cf %}
 
-<p><b>Handle:</b> {{ cf.handle }}</p>
+<div class="stats-grid">
 
-<p><b>Current Rating:</b> {{ cf.rating }} ({{ cf.rank }})</p>
+<div class="stat-box">
+<span>Handle</span>
+<strong>{{ cf.handle }}</strong>
+</div>
 
-<p><b>Max Rating:</b> {{ cf.maxRating }} ({{ cf.maxRank }})</p>
+<div class="stat-box">
+<span>Rating</span>
+<strong>{{ cf.rating }}</strong>
+</div>
 
-<p><b>Solved Problems:</b> {{ cf_solved }}</p>
+<div class="stat-box">
+<span>Rank</span>
+<strong>{{ cf.rank }}</strong>
+</div>
+
+<div class="stat-box">
+<span>Max Rating</span>
+<strong>{{ cf.maxRating }}</strong>
+</div>
+
+<div class="stat-box">
+<span>Max Rank</span>
+<strong>{{ cf.maxRank }}</strong>
+</div>
+
+<div class="stat-box">
+<span>Solved</span>
+<strong>{{ cf_solved }}</strong>
+</div>
+
+</div>
 
 <h3>Activity</h3>
+
+<div class="heatmap-container">
 <div id="cf-heatmap"></div>
+</div>
 
 {% else %}
 
@@ -34,7 +63,7 @@
 </div>
 
 
-<!-- LeetCode -->
+<!-- ================= LEETCODE ================= -->
 
 <div class="card">
 
@@ -42,16 +71,50 @@
 
 {% if lc %}
 
-<p><b>Handle:</b> {{ lc.handle }}</p>
-<p><b>Rating:</b> {{ lc.rating }}</p>
-<p><b>Total Solved:</b> {{ lc.totalSolved }}</p>
-<p><b>Easy:</b> {{ lc.easy }}</p>
-<p><b>Medium:</b> {{ lc.medium }}</p>
-<p><b>Hard:</b> {{ lc.hard }}</p>
-<p><b>Ranking:</b> {{ lc.ranking }}</p>
+<div class="stats-grid">
+
+<div class="stat-box">
+<span>Handle</span>
+<strong>{{ lc.handle }}</strong>
+</div>
+
+<div class="stat-box">
+<span>Rating</span>
+<strong>{{ lc.rating }}</strong>
+</div>
+
+<div class="stat-box">
+<span>Total Solved</span>
+<strong>{{ lc.totalSolved }}</strong>
+</div>
+
+<div class="stat-box">
+<span>Easy</span>
+<strong>{{ lc.easy }}</strong>
+</div>
+
+<div class="stat-box">
+<span>Medium</span>
+<strong>{{ lc.medium }}</strong>
+</div>
+
+<div class="stat-box">
+<span>Hard</span>
+<strong>{{ lc.hard }}</strong>
+</div>
+
+<div class="stat-box">
+<span>Ranking</span>
+<strong>{{ lc.ranking }}</strong>
+</div>
+
+</div>
 
 <h3>Activity</h3>
+
+<div class="heatmap-container">
 <div id="lc-heatmap"></div>
+</div>
 
 {% else %}
 
@@ -62,7 +125,7 @@
 </div>
 
 
-<!-- CodeChef -->
+<!-- ================= CODECHEF ================= -->
 
 <div class="card">
 
@@ -70,12 +133,39 @@
 
 {% if cc %}
 
-<p><b>Handle:</b> {{ cc.handle }}</p>
-<p><b>Rating:</b> {{ cc.rating }}</p>
-<p><b>Stars:</b> {{ cc.stars }}</p>
-<p><b>Solved Problems:</b> {{ cc.solved }}</p>
-<p><b>Global Rank:</b> {{ cc.global_rank }}</p>
-<p><b>Country Rank:</b> {{ cc.country_rank }}</p>
+<div class="stats-grid">
+
+<div class="stat-box">
+<span>Handle</span>
+<strong>{{ cc.handle }}</strong>
+</div>
+
+<div class="stat-box">
+<span>Rating</span>
+<strong>{{ cc.rating }}</strong>
+</div>
+
+<div class="stat-box">
+<span>Stars</span>
+<strong>{{ cc.stars }}</strong>
+</div>
+
+<div class="stat-box">
+<span>Solved</span>
+<strong>{{ cc.solved }}</strong>
+</div>
+
+<div class="stat-box">
+<span>Global Rank</span>
+<strong>{{ cc.global_rank }}</strong>
+</div>
+
+<div class="stat-box">
+<span>Country Rank</span>
+<strong>{{ cc.country_rank }}</strong>
+</div>
+
+</div>
 
 {% else %}
 
@@ -88,7 +178,7 @@
 </div>
 
 
-<!-- Heatmap Script -->
+<!-- ================= HEATMAP SCRIPT ================= -->
 
 <script>
 
@@ -99,7 +189,7 @@ function createHeatmap(containerId, data){
     const grid = document.createElement("div");
 
     grid.style.display = "grid";
-    grid.style.gridTemplateColumns = "repeat(20, 14px)";
+    grid.style.gridTemplateColumns = "repeat(40, 14px)";
     grid.style.gap = "4px";
     grid.style.marginTop = "10px";
 
@@ -147,4 +237,5 @@ document.addEventListener("DOMContentLoaded", function(){
 });
 
 </script>
+
 {% endblock %}

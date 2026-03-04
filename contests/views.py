@@ -1,6 +1,25 @@
 from django.shortcuts import render
 import requests
-from datetime import datetime
+from datetime import datetime, timedelta
+
+
+def format_duration(seconds):
+    minutes = seconds // 60
+    hours = minutes // 60
+    mins = minutes % 60
+
+    if mins == 0:
+        return f"{hours}h"
+    return f"{hours}h {mins}m"
+
+
+def format_duration_minutes(minutes):
+    hours = minutes // 60
+    mins = minutes % 60
+
+    if mins == 0:
+        return f"{hours}h"
+    return f"{hours}h {mins}m"
 
 
 def contests(request):
@@ -27,13 +46,13 @@ def contests(request):
                 for contest in data["result"]:
 
                     start = datetime.fromtimestamp(contest["startTimeSeconds"])
-                    duration = contest["durationSeconds"] // 3600
+                    duration = format_duration(contest["durationSeconds"])
 
                     contest_data = {
                         "platform": "Codeforces",
                         "name": contest["name"],
                         "start": start,
-                        "duration": f"{duration}h",
+                        "duration": duration,
                         "url": f"https://codeforces.com/contest/{contest['id']}"
                     }
 
@@ -48,7 +67,6 @@ def contests(request):
 
     except Exception as e:
         print("CF ERROR:", e)
-
 
 # ---------------- LEETCODE ----------------
 
@@ -77,30 +95,29 @@ def contests(request):
             for contest in contests:
 
                 start = datetime.fromtimestamp(contest["startTime"])
-                duration = contest["duration"] // 60
+                duration = format_duration(contest["duration"])
+
+                end = start + timedelta(seconds=contest["duration"])
 
                 contest_data = {
                     "platform": "LeetCode",
                     "name": contest["title"],
                     "start": start,
-                    "duration": f"{duration}m",
+                    "duration": duration,
                     "url": "https://leetcode.com/contest/"
                 }
 
-                end = start.timestamp() + contest["duration"]
-
-                if start > now:
-                    upcoming.append(contest_data)
-
-                elif start <= now <= datetime.fromtimestamp(end):
+                if start <= now <= end:
                     running.append(contest_data)
+
+                elif start > now:
+                    upcoming.append(contest_data)
 
                 else:
                     past.append(contest_data)
 
     except Exception as e:
         print("LC ERROR:", e)
-
 
 # ---------------- CODECHEF ----------------
 
@@ -113,6 +130,34 @@ def contests(request):
 
             data = response.json()
 
+            def format_duration(minutes):
+                minutes = int(minutes)
+                hours = minutes // 60
+                mins = minutes % 60
+
+                if mins == 0:
+                    return f"{hours}h"
+                return f"{hours}h {mins}m"
+
+            # RUNNING CONTESTS
+            for contest in data["present_contests"]:
+
+                start = datetime.strptime(
+                    contest["contest_start_date_iso"],
+                    "%Y-%m-%dT%H:%M:%S+05:30"
+                )
+
+                contest_data = {
+                    "platform": "CodeChef",
+                    "name": contest["contest_name"],
+                    "start": start,
+                    "duration": format_duration(contest["contest_duration"]),
+                    "url": f"https://www.codechef.com/{contest['contest_code']}"
+                }
+
+                running.append(contest_data)
+
+            # UPCOMING CONTESTS
             for contest in data["future_contests"]:
 
                 start = datetime.strptime(
@@ -124,22 +169,38 @@ def contests(request):
                     "platform": "CodeChef",
                     "name": contest["contest_name"],
                     "start": start,
-                    "duration": contest["contest_duration"],
+                    "duration": format_duration(contest["contest_duration"]),
                     "url": f"https://www.codechef.com/{contest['contest_code']}"
                 }
 
                 upcoming.append(contest_data)
 
+            # PAST CONTESTS
+            for contest in data["past_contests"][:5]:
+
+                start = datetime.strptime(
+                    contest["contest_start_date_iso"],
+                    "%Y-%m-%dT%H:%M:%S+05:30"
+                )
+
+                contest_data = {
+                    "platform": "CodeChef",
+                    "name": contest["contest_name"],
+                    "start": start,
+                    "duration": format_duration(contest["contest_duration"]),
+                    "url": f"https://www.codechef.com/{contest['contest_code']}"
+                }
+
+                past.append(contest_data)
+
     except Exception as e:
         print("CC ERROR:", e)
-
 
 # ---------------- SORT ----------------
 
     running = sorted(running, key=lambda x: x["start"])
     upcoming = sorted(upcoming, key=lambda x: x["start"])
     past = sorted(past, key=lambda x: x["start"], reverse=True)
-
 
 # ---------------- CONTEXT ----------------
 
