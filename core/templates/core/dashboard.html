@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>Dashboard</h1>
+
+<p>Welcome {{ user.username }} 👋</p>
+
+<div class="card">
+
+<h3>Competitive Stats</h3>
+<p>View your Codeforces, LeetCode and CodeChef stats.</p>
+
+<a href="/stats/" class="btn-green">Open Stats</a>
+
+</div>
+
+<div class="card">
+
+<h3>Contest Tracker</h3>
+<p>See upcoming contests from major platforms.</p>
+
+<a href="/contests/" class="btn-green">View Contests</a>
+
+</div>
+
+<div class="card">
+
+<h3>AI Mentor</h3>
+<p>Ask doubts and get help with competitive programming.</p>
+
+<a href="/mentor/" class="btn-green">Ask Mentor</a>
+
+</div>
+
+{% endblock %}

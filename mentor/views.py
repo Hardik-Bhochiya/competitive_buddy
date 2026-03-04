@@ -1,4 +1,5 @@
 from django.shortcuts import render
 
-def mentor_page(request):
-    return render(request, 'mentor.html')
+def mentor(request):
+
+    return render(request, "mentor/mentor.html")

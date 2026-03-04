@@ -1,4 +1,7 @@
 from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
 
-def stats_page(request):
-    return render(request, 'stats.html')
+@login_required
+def stats(request):
+
+    return render(request, "stats/stats.html")

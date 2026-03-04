@@ -1,39 +1,45 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<title>Competitive Buddy</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<html>
 
-<link rel="stylesheet" href="{% static 'css/base.css' %}">
-{% block extra_css %}{% endblock %}
+<head>
+<title>Competitive Buddy</title>
+
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
 
 </head>
 
 <body>
 
-<nav class="navbar">
-    <div class="nav-brand">Competitive Buddy</div>
+<nav>
 
-    <div class="nav-links">
-        <a href="/">Home</a>
-        <a href="/contests/">Contest</a>
-        <a href="/mentor/">Mentor</a>
+<a href="/">Dashboard</a>
+<a href="/mentor/">Mentor</a>
+<a href="/contests/">Contests</a>
 
-        {% if user.is_authenticated %}
-            <a href="/stats/">Stats</a>
-            <a href="/profile/">Profile</a>
-        {% else %}
-            <a href="/login/">Login</a>
-            <a href="/signup/">Signup</a>
-        {% endif %}
-    </div>
+{% if user.is_authenticated %}
+
+<a href="/stats/">Stats</a>
+<a href="/accounts/profile/">Profile</a>
+<a href="/accounts/logout/">Logout</a>
+
+{% else %}
+
+<a href="/accounts/login/">Login</a>
+<a href="/accounts/signup/">Signup</a>
+
+{% endif %}
+
 </nav>
 
-<main class="page">
-    {% block content %}{% endblock %}
-</main>
+<div class="container">
+
+{% block content %}
+
+{% endblock %}
+
+</div>
 
 </body>
+
 </html>

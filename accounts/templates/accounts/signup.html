@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>Create Account</h2>
+
+{% for message in messages %}
+<p style="color:red">{{ message }}</p>
+{% endfor %}
+
+<form method="POST">
+{% csrf_token %}
+
+<input name="username" placeholder="username"><br><br>
+<input name="email" placeholder="email"><br><br>
+<input type="password" name="password" placeholder="password"><br><br>
+
+<button class="btn-green">Sign Up</button>
+
+</form>
+
+{% endblock %}
