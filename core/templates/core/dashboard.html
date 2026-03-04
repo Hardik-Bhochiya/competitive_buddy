@@ -4,33 +4,69 @@
 
 <h1>Dashboard</h1>
 
-<p>Welcome {{ user.username }} 👋</p>
+<!-- HERO -->
 
-<div class="card">
+<div class="dashboard-hero">
 
-<h3>Competitive Stats</h3>
-<p>View your Codeforces, LeetCode and CodeChef stats.</p>
+<h2>Welcome to Competitive Buddy</h2>
 
-<a href="/stats/" class="btn-green">Open Stats</a>
+<p>
+Track contests, analyze coding stats, and improve with AI mentoring.
+</p>
 
 </div>
 
-<div class="card">
 
+<!-- QUICK STATS -->
+
+<div class="dashboard-stats">
+
+<div class="dashboard-card">
+<h3>Codeforces</h3>
+<p>Track rating & solved problems</p>
+<a href="/stats/">View Stats</a>
+</div>
+
+<div class="dashboard-card">
+<h3>LeetCode</h3>
+<p>Analyze problem solving progress</p>
+<a href="/stats/">View Stats</a>
+</div>
+
+<div class="dashboard-card">
+<h3>CodeChef</h3>
+<p>Monitor contest performance</p>
+<a href="/stats/">View Stats</a>
+</div>
+
+</div>
+
+
+<!-- QUICK TOOLS -->
+
+<h2>Quick Tools</h2>
+
+<div class="dashboard-tools">
+
+<div class="tool-card">
 <h3>Contest Tracker</h3>
-<p>See upcoming contests from major platforms.</p>
-
-<a href="/contests/" class="btn-green">View Contests</a>
-
+<p>Find upcoming contests</p>
+<a href="/contests/">Open</a>
 </div>
 
-<div class="card">
-
+<div class="tool-card">
 <h3>AI Mentor</h3>
-<p>Ask doubts and get help with competitive programming.</p>
+<p>Ask algorithm questions</p>
+<a href="/mentor/">Chat</a>
+</div>
 
-<a href="/mentor/" class="btn-green">Ask Mentor</a>
+<div class="tool-card">
+<h3>Stats</h3>
+<p>Analyze your progress</p>
+<a href="/stats/">View</a>
+</div>
 
 </div>
+
 
 {% endblock %}
