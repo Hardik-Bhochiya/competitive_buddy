@@ -11,7 +11,13 @@
 
 <body>
 
-<nav>
+<nav class="navbar">
+
+<div class="logo">
+<a href="/">Competitive Buddy</a>
+</div>
+
+<div class="nav-links">
 
 <a href="/">Dashboard</a>
 <a href="/mentor/">Mentor</a>
@@ -21,14 +27,16 @@
 
 <a href="/stats/">Stats</a>
 <a href="/accounts/profile/">Profile</a>
-<a href="/accounts/logout/">Logout</a>
+<a href="/accounts/logout/" class="logout">Logout</a>
 
 {% else %}
 
 <a href="/accounts/login/">Login</a>
-<a href="/accounts/signup/">Signup</a>
+<a href="/accounts/signup/" class="btn-green">Signup</a>
 
 {% endif %}
+
+</div>
 
 </nav>
 
@@ -41,5 +49,4 @@
 </div>
 
 </body>
-
 </html>

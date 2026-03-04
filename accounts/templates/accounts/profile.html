@@ -2,10 +2,105 @@
 
 {% block content %}
 
-<h2>Profile</h2>
+<h1>Profile</h1>
 
-<p>Username: {{ user.username }}</p>
+<form method="POST" id="profileForm">
 
-<p>Email: {{ user.email }}</p>
+{% csrf_token %}
+
+<div class="profile-container">
+
+<!-- LEFT SIDE -->
+
+<div class="profile-left">
+
+<img src="{{ user.profile.image.url }}" class="profile-img">
+
+<h3>{{ user.username }}</h3>
+
+<p>
+<b>College:</b>
+<span class="view">{{ user.profile.college }}</span>
+<input class="edit" name="college" value="{{ user.profile.college }}">
+</p>
+
+<p>
+<b>Country:</b>
+<span class="view">{{ user.profile.country }}</span>
+<input class="edit" name="country" value="{{ user.profile.country }}">
+</p>
+
+</div>
+
+
+<!-- RIGHT SIDE -->
+
+<div class="profile-right">
+
+<h3>Competitive Handles</h3>
+
+<p>
+Codeforces
+<span class="view">{{ user.profile.codeforces }}</span>
+<input class="edit" name="codeforces" value="{{ user.profile.codeforces }}">
+</p>
+
+<p>
+LeetCode
+<span class="view">{{ user.profile.leetcode }}</span>
+<input class="edit" name="leetcode" value="{{ user.profile.leetcode }}">
+</p>
+
+<p>
+CodeChef
+<span class="view">{{ user.profile.codechef }}</span>
+<input class="edit" name="codechef" value="{{ user.profile.codechef }}">
+</p>
+
+<h3>Bio</h3>
+
+<p class="view">{{ user.profile.bio }}</p>
+
+<textarea class="edit" name="bio">{{ user.profile.bio }}</textarea>
+
+<br><br>
+
+<button type="button" id="editBtn" class="btn-green" onclick="enableEdit()">Edit Profile</button>
+
+<div id="saveSection" style="display:none">
+
+<button type="submit" class="btn-green">Save</button>
+
+<button type="button" onclick="cancelEdit()">Cancel</button>
+
+</div>
+
+</div>
+
+</div>
+
+</form>
+
+<script>
+
+function enableEdit(){
+
+document.querySelectorAll(".view").forEach(el => el.style.display="none")
+
+document.querySelectorAll(".edit").forEach(el => el.style.display="inline-block")
+
+document.getElementById("editBtn").style.display="none"
+
+document.getElementById("saveSection").style.display="block"
+
+}
+
+function cancelEdit(){
+
+location.reload()
+
+}
+
+</script>
 
 {% endblock %}
