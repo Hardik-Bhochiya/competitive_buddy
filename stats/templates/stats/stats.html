@@ -6,6 +6,7 @@
 
 <div class="stats-container">
 
+
 <!-- ================= CODEFORCES ================= -->
 
 <div class="card">
@@ -47,6 +48,7 @@
 </div>
 
 </div>
+
 
 <h3>Activity</h3>
 
@@ -109,6 +111,7 @@
 </div>
 
 </div>
+
 
 <h3>Activity</h3>
 
@@ -175,8 +178,8 @@
 
 </div>
 
-</div>
 
+</div>
 
 <!-- ================= HEATMAP SCRIPT ================= -->
 
@@ -184,57 +187,58 @@
 
 function createHeatmap(containerId, data){
 
-    const container = document.getElementById(containerId);
+const container = document.getElementById(containerId)
 
-    const grid = document.createElement("div");
+const grid = document.createElement("div")
 
-    grid.style.display = "grid";
-    grid.style.gridTemplateColumns = "repeat(40, 14px)";
-    grid.style.gap = "4px";
-    grid.style.marginTop = "10px";
+grid.style.display = "grid"
+grid.style.gridTemplateColumns = "repeat(53, 14px)"
+grid.style.gridAutoFlow = "column"
+grid.style.gridTemplateRows = "repeat(7, 14px)"
+grid.style.gap = "3px"
 
-    const dates = Object.keys(data).sort();
+const dates = Object.keys(data).sort()
 
-    dates.forEach(date => {
+dates.forEach(date => {
 
-        const value = data[date];
+const value = data[date]
 
-        const cell = document.createElement("div");
+const cell = document.createElement("div")
 
-        cell.style.width = "14px";
-        cell.style.height = "14px";
-        cell.style.borderRadius = "3px";
+cell.style.width = "14px"
+cell.style.height = "14px"
+cell.style.borderRadius = "3px"
 
-        if(value == 0) cell.style.background = "#161b22";
-        else if(value < 3) cell.style.background = "#0e4429";
-        else if(value < 6) cell.style.background = "#006d32";
-        else if(value < 10) cell.style.background = "#26a641";
-        else cell.style.background = "#39d353";
+if(value == 0) cell.style.background = "#161b22"
+else if(value < 3) cell.style.background = "#0e4429"
+else if(value < 6) cell.style.background = "#006d32"
+else if(value < 10) cell.style.background = "#26a641"
+else cell.style.background = "#39d353"
 
-        cell.title = date + " : " + value + " solved";
+cell.title = date + " • " + value + " submissions"
 
-        grid.appendChild(cell);
+grid.appendChild(cell)
 
-    });
+})
 
-    container.appendChild(grid);
+container.appendChild(grid)
 
 }
 
 document.addEventListener("DOMContentLoaded", function(){
 
-    const cfData = {{ cf_heatmap|safe|default:"{}" }};
-    const lcData = {{ lc.calendar|safe|default:"{}" }};
+const cfData = {{ cf_heatmap|safe|default:"{}" }}
+const lcData = {{ lc.calendar|safe|default:"{}" }}
 
-    if(Object.keys(cfData).length){
-        createHeatmap("cf-heatmap", cfData);
-    }
+if(Object.keys(cfData).length){
+createHeatmap("cf-heatmap", cfData)
+}
 
-    if(Object.keys(lcData).length){
-        createHeatmap("lc-heatmap", lcData);
-    }
+if(Object.keys(lcData).length){
+createHeatmap("lc-heatmap", lcData)
+}
 
-});
+})
 
 </script>
 
