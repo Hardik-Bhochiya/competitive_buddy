@@ -490,12 +490,13 @@ padding:16px;
 /* message area */
 
 #chat-box{
-    flex:1;
-    overflow-y:auto;
-    padding:25px;
-    display:flex;
-    flex-direction:column;
-    gap:14px;
+flex:1;
+overflow-y:auto;
+padding:25px;
+padding-bottom:140px;   /* prevents message from hiding behind input */
+display:flex;
+flex-direction:column;
+gap:14px;
 }
 
 .chat-box{
